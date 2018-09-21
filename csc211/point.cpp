@@ -20,7 +20,8 @@ void point::set(int x, int y) {
 		this->y = y;
 	}
 	else {
-		cout << "Invalid arguments" << endl;
+		cout << "Error! Invalid Number Arguments" << endl;
+		cout << endl << endl;
 		exit(0);
 	}
 }

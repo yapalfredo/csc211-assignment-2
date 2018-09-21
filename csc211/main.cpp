@@ -4,17 +4,17 @@
 
 
 
-int main() {
+int main(const int argc, char *argv[]) {
 
-	//hide annoying cursor
+	//hide cursor
 	ShowConsoleCursor(false);
 
+	//clear console
+	system("CLS"); system("CLS");
+
 	//function call
-	coinFunction();
+	mainValidation(argc, argv);
 
 	system("Pause");
-
 	return 0;
 }
-
-

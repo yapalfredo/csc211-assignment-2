@@ -3,7 +3,7 @@
 
 class world {
 private:
-	int coinLocation[3][1][2];
+	int coins[3][1][2];
 	const char worldMap[10][21] = {
 		"[][][][][][][][][][]",
 		"[][][][][][][][][][]",
@@ -26,10 +26,4 @@ public:
 	int getCoordinate(int, int);
 
 	bool coin1Found, coin2Found, coin3Found;
-
-	
-
-
-	
 };
-

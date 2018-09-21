@@ -22,6 +22,3 @@ class point{
 	int getX() const;
 	int getY() const;
 };
-
-
-

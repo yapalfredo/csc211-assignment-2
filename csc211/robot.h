@@ -2,7 +2,6 @@
 #include "world.h"
 
 
-
 class robot {
 private:
 	point posOfRobot;
