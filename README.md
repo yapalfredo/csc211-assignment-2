@@ -1,5 +1,8 @@
 # csc211-assignment-2
-robot simulation
+# BMCC Borough of Manhattan Community College
+# CSC 211 - Advanced Computer Programming - C++
+# Fall 2018
+# Robot Simulation
 
 Program  description
  
