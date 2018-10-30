@@ -30,4 +30,6 @@ public:
 	bool forward(); 
 	bool zag(); 
 	bool zig();
+
+	void operator++();
 };
