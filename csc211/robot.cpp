@@ -42,10 +42,23 @@ int robot::getY() {
 	return posOfRobot.getY();
 }
 
-void robot::print() const {
+void robot::print(char i) const {
 
-	cout << "Robot's moving and searching for coin....." << endl << endl;
-	cout << "Robot's location is at (" << posOfRobot.getX() << "," << posOfRobot.getY() << ") and facing ";
+	/*cout << "Robot's moving and searching for coin....." << endl << endl;*/
+
+	switch (i)
+	{
+	case 'f':
+		cout << "Robot 1's location";
+		break;
+	case 'r':
+		cout << "Robot 2's location";
+		break;
+	default:
+		break;
+	}
+
+	cout << " is at (" << posOfRobot.getX() << "," << posOfRobot.getY() << ") and facing ";
 	switch (orientation)
 	{
 	case robot::east:
@@ -146,11 +159,10 @@ bool robot::northEnd() {
 
 void robot::turnCW(char i) {
 
-	print();
-
 	switch (i)
 	{
 	case 'f':
+		print('f');
 		if (orientation == east) {
 			setOrientation(south);
 			posOfRobot.setY(posOfRobot.getY() + 1);
@@ -160,6 +172,7 @@ void robot::turnCW(char i) {
 		}
 		break;
 	case 'r':
+		print('r');
 		if (orientation == east) {
 			setOrientation(north);
 			posOfRobot.setY(posOfRobot.getY() - 1);
@@ -176,11 +189,10 @@ void robot::turnCW(char i) {
 
 void robot::turnAntiCW(char i) {
 
-	print();
-
 	switch (i)
 	{
 	case 'f':
+		print('f');
 		if (orientation == west) {
 			setOrientation(south);
 			posOfRobot.setY(posOfRobot.getY() + 1);
@@ -190,6 +202,7 @@ void robot::turnAntiCW(char i) {
 		}
 		break;
 	case 'r':
+		print('r');
 		if (orientation == west) {
 			setOrientation(north);
 			posOfRobot.setY(posOfRobot.getY() - 1);
@@ -207,12 +220,12 @@ bool robot::forward() {
 	bool result = true;
 
 	if (orientation == east && !(eastEnd())) {
-		print();
+		print('f');
 		//Operator++ Overloading (increments x-coordinate)
 		posOfRobot++;
 	}
 	else if (orientation == west && !(westEnd())) {
-		print();
+		print('f');
 		//Operator-- Overloading (decrements x-coordinate)
 		posOfRobot--;
 	}
@@ -233,12 +246,12 @@ bool robot::reverse() {
 	bool result = true;
 
 	if (orientation == east && !(eastEnd())) {
-		print();
+		print('r');
 		//Operator++ Overloading (increments x-coordinate)
 		posOfRobot++;
 	}
 	else if (orientation == west && !(westEnd())) {
-		print();
+		print('r');
 		//Operator-- Overloading (decrements x-coordinate)
 		posOfRobot--;
 	}
@@ -305,4 +318,15 @@ bool robot::zig(char i) {
 	}
 
 	return result;
+}
+
+robot robot::operator-(robot& r) const
+{
+	robot robotDifference;
+
+
+	robotDifference.posOfRobot.setY(this->posOfRobot.getY() - r.posOfRobot.getY());
+	robotDifference.posOfRobot.setX(this->posOfRobot.getX() - r.posOfRobot.getX());
+
+	return robotDifference;
 }

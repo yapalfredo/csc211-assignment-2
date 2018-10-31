@@ -17,7 +17,7 @@ public:
 	int getY();
 
 	void print(world&) const;
-	void print() const;
+	void print(char) const;
 	void turnCW(char);
 	void turnAntiCW(char);
 	void initTop();
@@ -32,4 +32,6 @@ public:
 	bool reverse();
 	bool zag(char); 
 	bool zig(char);
+
+	robot operator-(robot&) const;
 };

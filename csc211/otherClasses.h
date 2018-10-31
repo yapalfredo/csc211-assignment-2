@@ -147,8 +147,7 @@ void coinAndOtherDetails(world& w) {
 }
 
 void worldMap(robot& robotPointer1, robot& robotPointer2, world& wPoint) {
-	loopCounter = 0;
-
+	
 	while (whileGameIsRunning) {
 
 		//call nececssary details
@@ -169,8 +168,7 @@ void worldMap(robot& robotPointer1, robot& robotPointer2, world& wPoint) {
 
 		//go through each location
 		//if last location is reached, stop game
-		if ((robotPointer1.getX() == 0 && robotPointer1.getY() == 9) || 
-			(wPoint.coin1Found == true && wPoint.coin2Found ==true && wPoint.coin3Found == true)) {
+		if (wPoint.coin1Found == true && wPoint.coin2Found ==true && wPoint.coin3Found == true) {
 			
 			if (wPoint.coin1Found == false && wPoint.coin2Found==false && wPoint.coin3Found == false) {
 				delay(111);
@@ -178,7 +176,8 @@ void worldMap(robot& robotPointer1, robot& robotPointer2, world& wPoint) {
 				//recalls when last end of mapped is reached
 				coinAndOtherDetails(wPoint);
 				wPoint.printMap(robotPointer1.getX(), robotPointer1.getY(), robotPointer2.getX(), robotPointer2.getY());
-				robotPointer1.print();
+				robotPointer1.print('f');
+				robotPointer2.print('r');
 			}
 			//setGame to finish
 			whileGameIsRunning = false;
@@ -188,8 +187,12 @@ void worldMap(robot& robotPointer1, robot& robotPointer2, world& wPoint) {
 			delay(111);
 			clearScreen();
 		}
-		loopCounter++;
 	}
-	cout << endl << "				Robot found all coins. It took "<< 
-		loopCounter <<" movements in total." << endl;
+
+	robot robotDistance = robotPointer2 - robotPointer1;
+	 
+	cout << "x1 is: " << robotPointer1.getX() << endl << "x2 is: " << robotPointer2.getX() << endl << endl;
+	cout << "y1 is: " << robotPointer1.getY() << endl << "y2 is: " << robotPointer2.getY() << endl;
+	
+	//cout << endl << "The distance between robots in Y is: " << robotDistance.getY() << endl;
 }
