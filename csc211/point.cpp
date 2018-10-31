@@ -40,3 +40,17 @@ void point::setX(int x) {
 void point::setY(int y) {
 	this->y = y;
 }
+
+point point::operator++(int)
+{
+	this->setX(this->getX() + 1);
+
+	return *this;
+}
+
+point point::operator--(int)
+{
+	this->setX(this->getX() - 1);
+
+	return *this;
+}

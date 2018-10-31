@@ -20,9 +20,14 @@ robot::~robot() {
 	//destructor
 }
 
-void robot::init() {
+void robot::initTop() {
 	posOfRobot.set(0, 0);
 	setOrientation(east);
+}
+
+void robot::initBottom() {
+	posOfRobot.set(9, 9);
+	setOrientation(west);
 }
 
 void robot::setOrientation(orientation_type orientation) {
@@ -70,13 +75,13 @@ void robot::print(world& w) const {
 	string message[3];
 	if (w.coin1Found) {
 		message[counter] = "		found a coin at (" + to_string(w.getCoordinate(0, 0))+ "," + to_string(w.getCoordinate(0, 1))+ ") YEHEY!!! ";
-		counter++;
+		counter+=1;
 	}if (w.coin2Found) {
 		message[counter] = "		found a coin at (" + to_string(w.getCoordinate(1, 0)) + "," + to_string(w.getCoordinate(1, 1)) + ") YEHEY!!! ";
-		counter++;
+		counter+=1;
 	} if (w.coin3Found) {
 		message[counter] = "		found a coin at (" + to_string(w.getCoordinate(2, 0)) + "," + to_string(w.getCoordinate(2, 1)) + ") YEHEY!!! ";
-		counter++;
+		counter+=1;
 	}
 	
 	for (int i = 0; i <counter; i++)
@@ -167,23 +172,32 @@ void robot::turnAntiCW() {
 }
 
 
+//bool blabla()
+// bool check = false;
+// if(forward(){check = true;
+//return check;
+//check++
+
+
 bool robot::forward() {
 	bool result = true;
 
 	if (orientation == east && !(eastEnd())) {
 		print();
-		posOfRobot.setX(posOfRobot.getX() + 1);
+		//Operator++ Overloading
+		posOfRobot++;
 	}
 	else if (orientation == west && !(westEnd())) {
 		print();
-		posOfRobot.setX(posOfRobot.getX() - 1);
+		//Operator-- Overloading
+		posOfRobot--;
 	}
 	else {
 		//FALSE AREA
-		if (eastEnd() && (zag())) {
+		if (eastEnd() && (zag('f'))) {
 			//face south then west
 		}
-		else if (westEnd() && zig()) {
+		else if (westEnd() && zig('f')) {
 			//face south then east
 		}
 		result = false;
@@ -191,24 +205,65 @@ bool robot::forward() {
 	return result;
 }
 
-bool robot::zag() {
+bool robot::reverse() {
 	bool result = true;
 
-	if (orientation == east || orientation == south) {
-		turnCW();
+	if (orientation == east && !(eastEnd())) {
+		print();
+		//Operator++ Overloading
+		posOfRobot++;
 	}
-
+	else if (orientation == west && !(westEnd())) {
+		print();
+		//Operator-- Overloading
+		posOfRobot--;
+	}
+	else {
+		//FALSE AREA
+		if (eastEnd() && (zag('r'))) {
+			//face south then west
+		}
+		else if (westEnd() && zig('r')) {
+			//face south then east
+		}
+		result = false;
+	}
 	return result;
 }
 
-bool robot::zig() {
+bool robot::zag(char i) {
 	bool result = true;
 
-	if (orientation == west || orientation == south) {
-		turnAntiCW();
+	switch (i)
+	{
+	case 'f':
+		if (orientation == east || orientation == south) 
+		{
+			turnCW();
+		}
+		break;
+	default:
+		break;
 	}
-	else {
-		result = false;
+	
+	return result;
+}
+
+bool robot::zig(char i) {
+	bool result = true;
+
+	switch (i)
+	{
+	case 'f':
+		if (orientation == west || orientation == south) {
+			turnAntiCW();
+		}
+		else {
+			result = false;
+		}
+		break;
+	default:
+		break;
 	}
 
 	return result;

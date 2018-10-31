@@ -21,4 +21,9 @@ class point{
     //accessor
 	int getX() const;
 	int getY() const;
+
+	//operatorOverloading
+	point operator++(int);
+	point operator--(int);
+
 };

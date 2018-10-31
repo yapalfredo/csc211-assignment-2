@@ -20,7 +20,8 @@ public:
 	void print() const;
 	void turnCW();
 	void turnAntiCW();
-	void init();
+	void initTop();
+	void initBottom();
 	void setOrientation(orientation_type);
 	
 	bool eastEnd();
@@ -28,8 +29,7 @@ public:
 	bool northEnd();
 	bool southEnd();
 	bool forward(); 
-	bool zag(); 
-	bool zig();
-
-	void operator++();
+	bool reverse();
+	bool zag(char); 
+	bool zig(char);
 };

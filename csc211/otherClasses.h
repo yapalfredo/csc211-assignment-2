@@ -14,7 +14,7 @@ inline void delay(unsigned long ms)
 
 void mainValidation(int, char*[]);
 void robotFunction(world&);
-void worldMap(robot&, world&);
+void worldMap(robot&, robot&, world&);
 void coinAndOtherDetails(world&);
 
 bool whileGameIsRunning = true;
@@ -123,12 +123,14 @@ void mainValidation(int argc, char *argv[]) {
 }
 
 void robotFunction(world& wPoint) {
-	robot robotPointer;
+	robot robotPointer1;
+	robotPointer1.initTop();
 
-	robotPointer.init();
+	robot robotPointer2;
+	robotPointer2.initBottom();
 
 	//Call Map for coin and robot movement
-	worldMap(robotPointer, wPoint);
+	worldMap(robotPointer1, robotPointer2, wPoint);
 }
 
 void coinAndOtherDetails(world& w) {
@@ -144,7 +146,7 @@ void coinAndOtherDetails(world& w) {
 
 }
 
-void worldMap(robot& robotPointer, world& wPoint) {
+void worldMap(robot& robotPointer1, robot& robotPointer2, world& wPoint) {
 	loopCounter = 0;
 
 	while (whileGameIsRunning) {
@@ -153,18 +155,21 @@ void worldMap(robot& robotPointer, world& wPoint) {
 		coinAndOtherDetails(wPoint);
 
 		//call the map for the world
-		wPoint.printMap(robotPointer.getX(), robotPointer.getY());
+		wPoint.printMap(robotPointer1.getX(), robotPointer1.getY());
 
-		//simulate robot's movement
-		// IF TRUE WILL MOVE FORWARD
+		//simulate robots movement
+
+		// IF TRUE WILL MOVE FORWARD/REVERSE
 		// IF FALSE WILL EITHER CALL ZIG() OR ZAG()
-		robotPointer.forward();
+		robotPointer1.forward();
+		robotPointer2.reverse();
 
-		robotPointer.print(wPoint);
+
+		robotPointer1.print(wPoint);
 
 		//go through each location
 		//if last location is reached, stop game
-		if ((robotPointer.getX() == 0 && robotPointer.getY() == 9) || 
+		if ((robotPointer1.getX() == 0 && robotPointer1.getY() == 9) || 
 			(wPoint.coin1Found == true && wPoint.coin2Found ==true && wPoint.coin3Found == true)) {
 			
 			if (wPoint.coin1Found == false && wPoint.coin2Found==false && wPoint.coin3Found == false) {
@@ -172,8 +177,8 @@ void worldMap(robot& robotPointer, world& wPoint) {
 				clearScreen();
 				//recalls when last end of mapped is reached
 				coinAndOtherDetails(wPoint);
-				wPoint.printMap(robotPointer.getX(), robotPointer.getY());
-				robotPointer.print();
+				wPoint.printMap(robotPointer1.getX(), robotPointer1.getY());
+				robotPointer1.print();
 			}
 			//setGame to finish
 			whileGameIsRunning = false;
