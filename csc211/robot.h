@@ -18,8 +18,8 @@ public:
 
 	void print(world&) const;
 	void print() const;
-	void turnCW();
-	void turnAntiCW();
+	void turnCW(char);
+	void turnAntiCW(char);
 	void initTop();
 	void initBottom();
 	void setOrientation(orientation_type);

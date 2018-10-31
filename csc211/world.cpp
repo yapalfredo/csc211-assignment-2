@@ -50,15 +50,18 @@ void world::set(int i, int x, int y) {
 	
 }
 
-void world::printMap(int x, int y){
+void world::printMap(int x1, int y1, int x2, int y2){
 
 	for (int  row = 0; row < 10; row++)
 	{
 		for (int col = 0; col < 21; col++)
 		{					
 			//move robot
-			if (row == y && (col % 2 == 0) && (col / 2) == x) {
+			if (row == y1 && (col % 2 == 0) && (col / 2) == x1) {
 				cout << worldMap[row][col]  << " R ";
+			}
+			else if (row == y2 && (col % 2 == 0) && (col / 2) == x2) {
+				cout << worldMap[row][col] << " R ";
 			}
 			else if ((row == coins[0][0][1] && col % 2 == 0 && (col / 2) == coins[0][0][0]) && !coin1Found) {
 				cout << worldMap[row][col] << " * ";
@@ -74,15 +77,27 @@ void world::printMap(int x, int y){
 			}
 
 			//if coins are found, set flags to TRUE
-			if (((row == coins[0][0][1]) && (row == y)) && ((col % 2 == 0) && (col / 2) == x) &&
+			if (((row == coins[0][0][1]) && (row == y1)) && ((col % 2 == 0) && (col / 2) == x1) &&
 				(col % 2 == 0) && (col / 2) == coins[0][0][0]) {
 				coin1Found = true;
 			}
-			if (((row == coins[1][0][1]) && (row == y)) && ((col % 2 == 0) && (col / 2) == x) &&
+			else if (((row == coins[0][0][1]) && (row == y2)) && ((col % 2 == 0) && (col / 2) == x2) &&
+				(col % 2 == 0) && (col / 2) == coins[0][0][0]) {
+				coin1Found = true;
+			}
+			if (((row == coins[1][0][1]) && (row == y1)) && ((col % 2 == 0) && (col / 2) == x1) &&
 				(col % 2 == 0) && (col / 2) == coins[1][0][0]) {
 				coin2Found = true;
 			}
-			if (((row == coins[2][0][1]) && (row == y)) && ((col % 2 == 0) && (col / 2) == x) &&
+			else if (((row == coins[1][0][1]) && (row == y2)) && ((col % 2 == 0) && (col / 2) == x2) &&
+				(col % 2 == 0) && (col / 2) == coins[1][0][0]) {
+				coin2Found = true;
+			}
+			if (((row == coins[2][0][1]) && (row == y1)) && ((col % 2 == 0) && (col / 2) == x1) &&
+				(col % 2 == 0) && (col / 2) == coins[2][0][0]) {
+				coin3Found = true;
+			}
+			else if (((row == coins[2][0][1]) && (row == y2)) && ((col % 2 == 0) && (col / 2) == x2) &&
 				(col % 2 == 0) && (col / 2) == coins[2][0][0]) {
 				coin3Found = true;
 			}

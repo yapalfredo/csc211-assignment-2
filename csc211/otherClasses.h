@@ -155,7 +155,7 @@ void worldMap(robot& robotPointer1, robot& robotPointer2, world& wPoint) {
 		coinAndOtherDetails(wPoint);
 
 		//call the map for the world
-		wPoint.printMap(robotPointer1.getX(), robotPointer1.getY());
+		wPoint.printMap(robotPointer1.getX(), robotPointer1.getY(), robotPointer2.getX(), robotPointer2.getY());
 
 		//simulate robots movement
 
@@ -177,7 +177,7 @@ void worldMap(robot& robotPointer1, robot& robotPointer2, world& wPoint) {
 				clearScreen();
 				//recalls when last end of mapped is reached
 				coinAndOtherDetails(wPoint);
-				wPoint.printMap(robotPointer1.getX(), robotPointer1.getY());
+				wPoint.printMap(robotPointer1.getX(), robotPointer1.getY(), robotPointer2.getX(), robotPointer2.getY());
 				robotPointer1.print();
 			}
 			//setGame to finish

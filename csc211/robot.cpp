@@ -144,52 +144,76 @@ bool robot::northEnd() {
 	return result;
 }
 
-void robot::turnCW() {
+void robot::turnCW(char i) {
 
 	print();
 
-	if (orientation == east) {
-		setOrientation(south);
-		posOfRobot.setY(posOfRobot.getY() + 1);
+	switch (i)
+	{
+	case 'f':
+		if (orientation == east) {
+			setOrientation(south);
+			posOfRobot.setY(posOfRobot.getY() + 1);
+		}
+		else if (orientation == south) {
+			setOrientation(west);
+		}
+		break;
+	case 'r':
+		if (orientation == east) {
+			setOrientation(north);
+			posOfRobot.setY(posOfRobot.getY() - 1);
+		}
+		else if (orientation == north) {
+			setOrientation(west);
+		}
+		break;
+	default:
+		break;
+	}
 
-	}
-	else if (orientation == south) {
-		setOrientation(west);
-	}
 }
 
-void robot::turnAntiCW() {
+void robot::turnAntiCW(char i) {
 
 	print();
 
-	if (orientation == west) {
-		setOrientation(south);
-		posOfRobot.setY(posOfRobot.getY() + 1);
-	}
-	else if (orientation == south) {
-		setOrientation(east);
+	switch (i)
+	{
+	case 'f':
+		if (orientation == west) {
+			setOrientation(south);
+			posOfRobot.setY(posOfRobot.getY() + 1);
+		}
+		else if (orientation == south) {
+			setOrientation(east);
+		}
+		break;
+	case 'r':
+		if (orientation == west) {
+			setOrientation(north);
+			posOfRobot.setY(posOfRobot.getY() - 1);
+		}
+		else if (orientation == north) {
+			setOrientation(east);
+		}
+		break;
+	default:
+		break;
 	}
 }
-
-
-//bool blabla()
-// bool check = false;
-// if(forward(){check = true;
-//return check;
-//check++
-
 
 bool robot::forward() {
 	bool result = true;
 
 	if (orientation == east && !(eastEnd())) {
 		print();
-		//Operator++ Overloading
+		//Operator++ Overloading (increments x-coordinate)
 		posOfRobot++;
 	}
 	else if (orientation == west && !(westEnd())) {
 		print();
-		//Operator-- Overloading
+		//Operator-- Overloading (decrements x-coordinate)
 		posOfRobot--;
 	}
 	else {
@@ -210,21 +234,21 @@ bool robot::reverse() {
 
 	if (orientation == east && !(eastEnd())) {
 		print();
-		//Operator++ Overloading
+		//Operator++ Overloading (increments x-coordinate)
 		posOfRobot++;
 	}
 	else if (orientation == west && !(westEnd())) {
 		print();
-		//Operator-- Overloading
+		//Operator-- Overloading (decrements x-coordinate)
 		posOfRobot--;
 	}
 	else {
 		//FALSE AREA
 		if (eastEnd() && (zag('r'))) {
-			//face south then west
+			//face north then west
 		}
 		else if (westEnd() && zig('r')) {
-			//face south then east
+			//face north then east
 		}
 		result = false;
 	}
@@ -239,7 +263,13 @@ bool robot::zag(char i) {
 	case 'f':
 		if (orientation == east || orientation == south) 
 		{
-			turnCW();
+			turnCW('f');
+		}
+		break;
+	case 'r':
+		if (orientation == east || orientation == north)
+		{
+			turnCW('r');
 		}
 		break;
 	default:
@@ -256,7 +286,15 @@ bool robot::zig(char i) {
 	{
 	case 'f':
 		if (orientation == west || orientation == south) {
-			turnAntiCW();
+			turnAntiCW('f');
+		}
+		else {
+			result = false;
+		}
+		break;
+	case 'r':
+		if (orientation == west || orientation == north) {
+			turnAntiCW('r');
 		}
 		else {
 			result = false;

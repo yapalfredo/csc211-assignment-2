@@ -22,7 +22,7 @@ public:
 	~world();
 	void print() const;
 	void set(int, int, int);
-	void printMap(int, int);
+	void printMap(int, int, int, int);
 	int getCoordinate(int, int);
 
 	bool coin1Found, coin2Found, coin3Found;
