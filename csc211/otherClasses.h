@@ -192,14 +192,13 @@ void worldMap(robot& robotPointer1, robot& robotPointer2, world& wPoint) {
 	robot robotDistance;
 	
 	//cout << "X1: " << robotPointer1.getX() << ".  X2: " << robotPointer2.getX() << endl;
-	cout << endl << "			Manhattan distance between both robots is: " << robotDistance.distance(robotPointer1, robotPointer2) << endl;
+	cout << endl << "			FOUND ALL COINS!!!!		Manhattan distance between both robots is: " << robotDistance.distance(robotPointer1, robotPointer2) << endl;
 	if (robotPointer1 == robotPointer2)
 	{
-		cout << "			Robot 1 and Robot 2 are in the same coordinates." << endl;
+		cout << "							Robot 1 and Robot 2 are in the same coordinates." << endl;
 	}
 	else
 	{
-		cout << "			Robot 1 and Robot 2 are not in the same coordinates." << endl;
+		cout << "							Robot 1 and Robot 2 are not in the same coordinates." << endl;
 	}
-	
 }

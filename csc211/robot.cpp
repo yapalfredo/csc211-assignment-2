@@ -346,7 +346,7 @@ float robot::distance(robot& l, robot& r)const
 }
 
 
-//------- THIS 2 FINAL BLOCKS WILL UNDO THE CHANGES ON THE X ON THE LAST LOOP
+//------- THESE 2 FINAL BLOCKS WILL UNDO THE CHANGES/ERRORS ON THE X VALUES ON THE LAST LOOP
 void robot::fix_X(int x)
 {
 	setFix_X(x);
@@ -356,4 +356,4 @@ void robot::setFix_X(int x)
 {
 	posOfRobot.setX(x);
 }
-
+//------------------------------------------------------------------------------------------
