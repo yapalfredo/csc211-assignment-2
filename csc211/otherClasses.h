@@ -143,7 +143,6 @@ void coinAndOtherDetails(world& w) {
 	cout << "   | |/ |/ / / /_/ / / , _/ / /__  / // /     / /|_/ / / __ |  / ___/" << endl;
 	cout << "   |__/|__/  \\____/ /_/|_| /____/ /____/     /_/  /_/ /_/ |_| /_/   " << endl;
 	cout << "                                                                   " << endl;
-
 }
 
 void worldMap(robot& robotPointer1, robot& robotPointer2, world& wPoint) {
