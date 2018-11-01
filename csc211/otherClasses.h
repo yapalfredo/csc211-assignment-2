@@ -147,8 +147,9 @@ void coinAndOtherDetails(world& w) {
 }
 
 void worldMap(robot& robotPointer1, robot& robotPointer2, world& wPoint) {
-	
-	while (whileGameIsRunning) {
+	int tempX1, tempX2;
+
+	while (whileGameIsRunning){
 
 		//call nececssary details
 		coinAndOtherDetails(wPoint);
@@ -163,7 +164,6 @@ void worldMap(robot& robotPointer1, robot& robotPointer2, world& wPoint) {
 		robotPointer1.forward();
 		robotPointer2.reverse();
 
-
 		robotPointer1.print(wPoint);
 
 		//go through each location
@@ -176,8 +176,6 @@ void worldMap(robot& robotPointer1, robot& robotPointer2, world& wPoint) {
 				//recalls when last end of mapped is reached
 				coinAndOtherDetails(wPoint);
 				wPoint.printMap(robotPointer1.getX(), robotPointer1.getY(), robotPointer2.getX(), robotPointer2.getY());
-				robotPointer1.print('f');
-				robotPointer2.print('r');
 			}
 			//setGame to finish
 			whileGameIsRunning = false;
@@ -186,13 +184,23 @@ void worldMap(robot& robotPointer1, robot& robotPointer2, world& wPoint) {
 			//pauses in between loop (in terms of millisecond)
 			delay(111);
 			clearScreen();
-		}
-	}
 
-	robot robotDistance = robotPointer2 - robotPointer1;
-	 
-	cout << "x1 is: " << robotPointer1.getX() << endl << "x2 is: " << robotPointer2.getX() << endl << endl;
-	cout << "y1 is: " << robotPointer1.getY() << endl << "y2 is: " << robotPointer2.getY() << endl;
+			//----------> W O R K S
+			tempX1 = robotPointer1.getX(); tempX2 = robotPointer2.getX();
+		}
+		//tempX1 = robotPointer1.getX(); tempX2 = robotPointer2.getX();				----------> doesn't work
+	}
 	
-	//cout << endl << "The distance between robots in Y is: " << robotDistance.getY() << endl;
+	//robot robotDistance = robotPointer2 - robotPointer1;
+
+	cout << "X1: " << tempX1 << " , X2: " << tempX2 << endl;
+
+	cout << "X1: " << robotPointer1.getX() << " , X2: " << robotPointer2.getX() << endl;
+
+
+
+
+	//cout << "Distance in Y: " << abs(robotDistance.getY()) << endl;
+	
+	
 }
