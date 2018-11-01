@@ -168,39 +168,39 @@ void worldMap(robot& robotPointer1, robot& robotPointer2, world& wPoint) {
 
 		//go through each location
 		//if last location is reached, stop game
-		if (wPoint.coin1Found == true && wPoint.coin2Found ==true && wPoint.coin3Found == true) {
-			
-			if (wPoint.coin1Found == false && wPoint.coin2Found==false && wPoint.coin3Found == false) {
-				delay(111);
-				clearScreen();
-				//recalls when last end of mapped is reached
-				coinAndOtherDetails(wPoint);
-				wPoint.printMap(robotPointer1.getX(), robotPointer1.getY(), robotPointer2.getX(), robotPointer2.getY());
-			}
+		if (wPoint.coin1Found == true && wPoint.coin2Found ==true && wPoint.coin3Found == true) 
+		{
 			//setGame to finish
 			whileGameIsRunning = false;
+			break;
 		}
-		else {
+		else 
+		{
 			//pauses in between loop (in terms of millisecond)
 			delay(111);
 			clearScreen();
 
-			//----------> W O R K S
+			//---------- WILL CAPTURE THE ACCURATE VALUE OF X AT THE END OF THE LOOP----------------
 			tempX1 = robotPointer1.getX(); tempX2 = robotPointer2.getX();
+			//--------------------------------------------------------------------------------------
 		}
-		//tempX1 = robotPointer1.getX(); tempX2 = robotPointer2.getX();				----------> doesn't work
 	}
+
+	//--------- UNDOS/FIXES THE VALUE OF THE X ------------------------------------------------------
+	robotPointer1.fix_X(tempX1); robotPointer2.fix_X(tempX2);
+	//-----------------------------------------------------------------------------------------------
+
+	robot robotDistance;
 	
-	//robot robotDistance = robotPointer2 - robotPointer1;
-
-	cout << "X1: " << tempX1 << " , X2: " << tempX2 << endl;
-
-	cout << "X1: " << robotPointer1.getX() << " , X2: " << robotPointer2.getX() << endl;
-
-
-
-
-	//cout << "Distance in Y: " << abs(robotDistance.getY()) << endl;
-	
+	//cout << "X1: " << robotPointer1.getX() << ".  X2: " << robotPointer2.getX() << endl;
+	cout << endl << "			Manhattan distance between both robots is: " << robotDistance.distance(robotPointer1, robotPointer2) << endl;
+	if (robotPointer1 == robotPointer2)
+	{
+		cout << "			Robot 1 and Robot 2 are in the same coordinates." << endl;
+	}
+	else
+	{
+		cout << "			Robot 1 and Robot 2 are not in the same coordinates." << endl;
+	}
 	
 }

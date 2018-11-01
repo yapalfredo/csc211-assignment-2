@@ -320,13 +320,40 @@ bool robot::zig(char i) {
 	return result;
 }
 
+// ---------- OPERATOR OVERLOADING FOR. DIFFERENCE FOR 2 ROBOTS
 robot robot::operator-(robot& r) const
 {
 	robot robotDifference;
-
 
 	robotDifference.posOfRobot.setY(this->posOfRobot.getY() - r.posOfRobot.getY());
 	robotDifference.posOfRobot.setX(this->posOfRobot.getX() - r.posOfRobot.getX());
 
 	return robotDifference;
 }
+
+// ---------- OPERATOR OVERLOADING FOR. DISTANCE IF EQUALS FOR 2 ROBOTS
+bool robot::operator==(robot& r)
+{
+	return (this ->getX() == r.getX() && this ->getY() == r.getY());
+}
+
+//
+
+//------ MANHATTAN DISTANCE FORMULA
+float robot::distance(robot& l, robot& r)const
+{ 
+	return (float)(abs(l.getX() - r.getX()) + abs(r.getY() - l.getY()));
+}
+
+
+//------- THIS 2 FINAL BLOCKS WILL UNDO THE CHANGES ON THE X ON THE LAST LOOP
+void robot::fix_X(int x)
+{
+	setFix_X(x);
+}
+
+void robot::setFix_X(int x)
+{
+	posOfRobot.setX(x);
+}
+

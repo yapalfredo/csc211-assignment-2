@@ -58,10 +58,10 @@ void world::printMap(int x1, int y1, int x2, int y2){
 		{					
 			//move robot
 			if (row == y1 && (col % 2 == 0) && (col / 2) == x1) {
-				cout << worldMap[row][col]  << " R ";
+				cout << worldMap[row][col]  << "R_1";
 			}
 			else if (row == y2 && (col % 2 == 0) && (col / 2) == x2) {
-				cout << worldMap[row][col] << " R ";
+				cout << worldMap[row][col] << "R_2";
 			}
 			else if ((row == coins[0][0][1] && col % 2 == 0 && (col / 2) == coins[0][0][0]) && !coin1Found) {
 				cout << worldMap[row][col] << " * ";

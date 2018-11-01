@@ -7,6 +7,7 @@ private:
 	point posOfRobot;
 	enum orientation_type { east, west, south, north } orientation;
 	string name;
+	void setFix_X(int); //helper function for undoing X last movement on the final loop
 public:
 	robot();
 	robot(point);
@@ -33,5 +34,9 @@ public:
 	bool zag(char); 
 	bool zig(char);
 
+	void fix_X(int); //undo's X last movement on the final loop
+	
+	float distance(robot&, robot&) const;
 	robot operator-(robot&) const;
+	bool operator==(robot&);
 };
